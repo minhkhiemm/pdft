@@ -260,6 +260,19 @@ func (i *PDFt) InsertImgBase64(base64str string, pageNum int, x float64, y float
 	return nil
 }
 
+// InsertLine insert line
+func (i *PDFt) InsertLine(lineType string, pageNum int, lineWidth, x1, y1, x2, y2 float64) error {
+	var pdfline PDFLineData
+	lineObj := createLineObjFromBytes(lineType, lineWidth, x1, y1, x2, y2)
+	pdfline.setLineObject(lineObj)
+	var ct ContentLineStyle
+	ct.pageNum = pageNum
+	ct.width = lineWidth
+	ct.lineType = lineType
+	i.contenters = append(i.contenters, &ct)
+	return nil
+}
+
 //InsertImg insert img
 func (i *PDFt) InsertImg(img []byte, pageNum int, x float64, y float64, w float64, h float64) error {
 

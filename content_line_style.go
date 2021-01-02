@@ -9,6 +9,7 @@ import (
 type ContentLineStyle struct {
 	width    float64
 	lineType string
+	pageNum  int
 }
 
 func (c *ContentLineStyle) toSteram() (*bytes.Buffer, error) {
@@ -26,5 +27,5 @@ func (c *ContentLineStyle) toSteram() (*bytes.Buffer, error) {
 }
 
 func (c *ContentLineStyle) page() int {
-	return 1
+	return c.pageNum
 }
